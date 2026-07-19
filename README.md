@@ -19,7 +19,8 @@ state 管理は Redux Toolkit、認証とデータの保存は Firebase（Authen
 | state 管理 | Redux Toolkit |
 | 認証 | Firebase Authentication（Google ログイン） |
 | データ保存 | Cloud Firestore |
-| ビルド | Create React App（react-scripts） |
+| ビルド | Vite |
+| スタイル | Tailwind CSS v4 |
 
 ## ディレクトリ構成
 
@@ -138,26 +139,46 @@ src/
 
 ```bash
 npm install
-npm start
+npm run dev
 ```
 
 `http://localhost:3000` で開きます。
 
-Firebase の設定値はリポジトリに含めず、プロジェクト直下の `.env` に置きます。
+Firebase の設定値はリポジトリに含めず、プロジェクト直下の `.env` に置きます。Vite では `VITE_` プレフィックスの環境変数だけがクライアントに公開されます。
 
 ```
-REACT_APP_FIREBASE_API_KEY=
-REACT_APP_FIREBASE_AUTH_DOMAIN=
-REACT_APP_FIREBASE_PROJECT_ID=
-REACT_APP_FIREBASE_STORAGE_BUCKET=
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
-REACT_APP_FIREBASE_APP_ID=
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
 ```
+
+## Tailwind CSS（v4）の設定
+
+v3 時代のチュートリアルにある次の 2 つの手順は、v4 では不要です。
+
+**1. `tailwind.config.js` の `content` 配列 → 不要（自動検出に置き換わった）**
+
+v4 では設定ファイルなしでテンプレートファイル（`src/**/*.tsx` 等）を自動検出します。`@tailwindcss/vite` プラグインがプロジェクトを走査するので、`content` の指定自体が廃止されました。
+
+このリポジトリに `tailwind.config.js` が無いのは意図どおりです。
+
+**2. `@import 'tailwindcss/base';` ほか 3 行 → 1 行に統合**
+
+v4 ではこの 3 行が 1 行にまとまりました。`src/index.css` の先頭に書いてあります。
+
+```css
+@import "tailwindcss";
+```
+
+テーマを変更したいときは、`tailwind.config.js` を作るのではなく `src/index.css` に `@theme { --color-brand: #...; }` の形で書き足します。
 
 ## npm scripts
 
 | コマンド | 説明 |
 |----------|------|
-| `npm start` | 開発サーバーを起動します |
-| `npm test` | テストを watch モードで実行します |
-| `npm run build` | `build/` に本番用のビルドを出力します |
+| `npm run dev` | 開発サーバーを起動します |
+| `npm run build` | 型チェックと `dist/` への本番ビルドを実行します |
+| `npm run preview` | ビルド結果をローカルでプレビューします |
