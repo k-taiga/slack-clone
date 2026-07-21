@@ -11,6 +11,8 @@ Google アカウントでログインし、チャンネルを作って、チャ�
 
 - ビルドは Create React App から Vite に移行済み（`vite.config.ts` / ルート直下の `index.html`）。CRA 固有ファイルは削除済み
 - Tailwind CSS v4 は `@tailwindcss/vite` プラグインで設定済みで、クラスが効くことを確認済み
+- Node は mise で `22.21.1` に固定済み（`mise.toml`）。別マシンでは `mise install` で同じ版が入る
+- MUI（`@mui/material` / `@mui/icons-material` / `@emotion/react` / `@emotion/styled`）は導入済み。`@mui/base` は開発終了のため使わず、`TextareaAutosize` などは `@mui/material` から import する
 - `app/` `components/` `features/` `firebase/` `types/` はいずれも未作成
 - `@reduxjs/toolkit` / `react-redux` / `firebase` は `package.json` に未追加
 
@@ -38,6 +40,7 @@ v3 時代の手順（`npx tailwindcss init`、`tailwind.config.js` の `content`
 | データ保存 | Cloud Firestore |
 | ビルド | Vite 7 |
 | スタイル | Tailwind CSS v4（`@tailwindcss/vite`） |
+| UI コンポーネント / アイコン | MUI（`@mui/material` / `@mui/icons-material`。`@emotion/react` / `@emotion/styled` に依存） |
 
 ## ディレクトリ構成
 
