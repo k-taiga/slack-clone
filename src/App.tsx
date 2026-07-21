@@ -1,7 +1,11 @@
+import Sidebar from './components/Sidebar';
+import ChatContainer from './components/ChatContainer';
+
 function App() {
   return (
-    <div className="bg-amber-400">
-      Hello Tailwind
+    <div className="flex">
+      <Sidebar />
+      <ChatContainer />
     </div>
   );
 }
