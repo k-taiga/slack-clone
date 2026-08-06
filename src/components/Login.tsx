@@ -1,26 +1,29 @@
-import {signInWithGoogle} from "../features/auth/auth";
-import {getUser} from "../features/user/userAPI.ts";
+import {useAppDispatch} from "../app/hooks";
+import {googleSignInAndUserSetup, login} from "../features/user/userSlice";
 
 const Login = () => {
-    // const loginWithGoogle = async () => {
-    //     try {
-    //         const result = await signInWithGoogle();
-    //         const login_user = result.user;
-    //         console.log(login_user);
-    //     } catch (error) {
-    //         console.log('LoginFailed:', error);
-    //     }
-    // }
+    const dispatch = useAppDispatch();
 
-    const getUserInfo = async () => {
-        try {
-            const user = await getUser("K7laLbugSdtjMiYeH8wF");
-            if(user) {
-                console.log(user);
+    // 無名関数を作成しそれをloginWithGoogleに渡す
+    // phpでいう$loginWithGoogle = function () { ... };と同じ、引数を受け取らないため()
+    const loginWithGoogle = () => {
+        // async関数なので非同期の呼び出しが完了するまでthenで待機
+        // thenは関数を引数に取る
+        googleSignInAndUserSetup().then(
+            // 「終わったら呼ばれる関数」をいったん変数に出した形は下記、これをそのまま渡している
+            //   const onFinished = (userId) => {
+            //       if (userId) {
+            //           dispatch(login(userId));
+            //       }
+            //   };
+            // userIdを関数の引数として持つ,stringかundefined型
+            (userId) => {
+                // userIdがあればlogin実行
+                if(userId) {
+                    dispatch(login(userId));
+                }
             }
-        } catch (error) {
-            console.log('getUserInfoFailed:', error);
-        }
+        )
     }
 
     return (
@@ -33,7 +36,8 @@ const Login = () => {
                     <div className="flex items-center justify-center">
                         <button
                             className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            onClick={getUserInfo}>
+                            // ()なしで関数そのものを渡す、()をつけるとその場で実行される
+                            onClick={loginWithGoogle}>
                             ログイン
                         </button>
                     </div>
