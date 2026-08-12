@@ -44,7 +44,7 @@ src/
 ├─ features/                   # 機能ごとのReduxロジックとコンポーネント
 │  ├─ auth/
 │  │  ├─ auth.ts               # Firebase認証関連の関数（Googleログイン等）
-│  │  └─ useAuthState.tsx      # 自動ログイン機能
+│  │  └─ useAuthState.ts       # 自動ログイン機能
 │  ├─ channel/
 │  │  ├─ channelAPI.ts         # チャンネルに関するAPI呼び出しの定義
 │  │  └─ channelSlice.ts       # state管理に関するRedux Sliceの定義
@@ -104,7 +104,7 @@ src/
 | ファイル | 説明 |
 |----------|------|
 | `auth/auth.ts` | Firebase Authentication を呼び出す関数です。Google ログイン・ログアウトなどを定義します |
-| `auth/useAuthState.tsx` | ログイン状態を監視するカスタムフックです。リロードしてもログインが続く（自動ログイン）ようにします |
+| `auth/useAuthState.ts` | ログイン状態を監視するカスタムフックです。リロードしてもログインが続く（自動ログイン）ようにします |
 | `channel/channelAPI.ts` | Firestore のチャンネルコレクションに対する取得・追加処理です |
 | `channel/channelSlice.ts` | チャンネル関連の state と reducer です。選択中のチャンネルなどを保持します |
 | `message/messageAPI.ts` | Firestore のメッセージに対する取得・送信処理です |

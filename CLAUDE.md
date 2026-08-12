@@ -64,7 +64,7 @@ src/
 ├─ features/                   # 機能ごとのReduxロジックとコンポーネント
 │  ├─ auth/
 │  │  ├─ auth.ts               # Firebase認証関連の関数（Googleログイン等）
-│  │  └─ useAuthState.tsx      # 自動ログイン機能
+│  │  └─ useAuthState.ts       # 自動ログイン機能
 │  ├─ channel/
 │  │  ├─ channelAPI.ts         # チャンネルに関するAPI呼び出しの定義
 │  │  └─ channelSlice.ts       # state管理に関するRedux Sliceの定義

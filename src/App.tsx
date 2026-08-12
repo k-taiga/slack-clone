@@ -2,8 +2,12 @@ import Login from './components/Login';
 import Sidebar from "./components/Sidebar.tsx";
 import ChatContainer from "./components/ChatContainer";
 import {useAppSelector} from "./app/hooks.ts";
+import useAuthState from "./features/auth/useAuthState";
 
 function App() {
+  // アプリケーションで自動ログイン機能を有効にする
+  useAuthState();
+
   // store の state から userId だけを取り出す。
   // 渡した関数の戻り値が変わったときだけ、このコンポーネントが再描画される。
   // login / logout が dispatch されて state.user.userId が変われば、下の分岐がやり直される。

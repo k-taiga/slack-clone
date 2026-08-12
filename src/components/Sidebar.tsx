@@ -3,6 +3,7 @@ import {useAppSelector} from "../app/hooks.ts";
 import {useEffect, useState} from "react";
 import {getUser} from "../features/user/userAPI";
 import {User} from "../type/User";
+import {signOut} from "../features/auth/auth";
 
 const Sidebar = () => {
     // 引数に渡した関数（selector）が state 全体を受け取り、必要な一部だけを返す。
@@ -54,7 +55,7 @@ const Sidebar = () => {
             </div>
             <div className="py-5 mt-auto mx-2 flex flex-col items-center">
                 <div className="bg-gray-700 p-2 rounded-lg">
-                    <img src={"/default-user-icon.png"} alt=""/>
+                    <img src={user?.profile_picture || "/default-user-icon.png"} alt="" onClick={() => signOut()}/>
                 </div>
                 <span className="text-xs" >{user?.displayName}</span>
             </div>
