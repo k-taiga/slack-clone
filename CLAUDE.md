@@ -100,6 +100,10 @@ src/
 - Firebase のインスタンス（Firestore / Auth）は `firebase/firebaseconfig.ts` からのみ export し、各所で `initializeApp` を呼ばない
 - `ChatContainer/` のように、親コンポーネントと同名のディレクトリにその子コンポーネントを入れる
 
+## スキル
+
+- **理解用のコメントを頼まれたら `learning-comments` スキルを使う**（`.claude/skills/learning-comments/`）。「理解用のコメントして」「なんでこうしているか分かるようにコメントして」「読めるようにコメント付けて」等が該当する。ユーザーがスキル名を打たなくても、こちらから起動する
+
 ## 規約
 
 - Firebase の設定値はコードに直書きせず、`.env` の `VITE_FIREBASE_*` から読む（Vite では `VITE_` プレフィックスの変数だけがクライアントに公開される）。`.env` は `.gitignore` 済みなのでコミットしない
