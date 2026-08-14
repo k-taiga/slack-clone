@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 // userSlice.ts の default export（= userSlice.reducer）。login / logout をまとめた 1 つの reducer。
 import userReducer from "../features/user/userSlice";
+import channelReducer from "../features/channel/channelSlice.ts";
 
 // アプリ全体の state を 1 つのオブジェクトで保持する store。
 // configureStore は Redux DevTools 連携やミドルウェアの定番設定込みで store を作る。
@@ -12,6 +13,7 @@ export const store = configureStore({
   // name は action type の接頭辞（"userId/login"）にだけ使われ、state のキーには影響しない。
   reducer: {
     user: userReducer,
+    channel: channelReducer
   },
 });
 
