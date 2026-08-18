@@ -3,6 +3,8 @@ import {
     query,
     collection,
     onSnapshot,
+    Timestamp,
+    addDoc,
 } from "firebase/firestore";
 import { firebaseApp } from "../../firebase/firebaseconfig";
 import { Channel, ChannelRef } from "../../type/Channel";
@@ -72,3 +74,15 @@ export const subscribeChannels = (
         }
     );
 };
+
+export const postChannel = async(channel: Channel) => {
+    await addDoc(collection(db, "channels"), channel);
+}
+
+export const createChannel = (name:string): Channel => {
+    const timestamp = Timestamp.fromDate(new Date());
+    return {
+        name: name,
+        created_at: timestamp
+    }
+}
